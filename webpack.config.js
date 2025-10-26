@@ -33,8 +33,16 @@ module.exports = {
     static: './dist',
     port: 3000,
     hot: true,
-    open: true,
+    open: false, // Don't auto-open in Gitpod
     host: '0.0.0.0', // Important for Gitpod
     allowedHosts: 'all',
+    client: {
+      webSocketURL: 'auto://0.0.0.0:0/ws', // Fix WebSocket for Gitpod
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
   },
 };
