@@ -61,9 +61,9 @@ env:
 git:
   config:
     - name: user.name
-      value: "Your Name"
+      value: "FireZombieCoder"
     - name: user.email
-      value: "gitpod@example.com"
+      value: "firezombify@gmail.com"
 
 # Prebuild configuration
 github:

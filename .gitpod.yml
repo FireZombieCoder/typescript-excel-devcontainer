@@ -102,8 +102,8 @@ env:
 
 # Git configuration
 gitConfig:
-  user.name: "Gitpod User"
-  user.email: "gitpod@example.com"
+  user.name: "FireZombieCoder"
+  user.email: "firezombify@gmail.com"
 
 # IDE preferences
 ide: vscode

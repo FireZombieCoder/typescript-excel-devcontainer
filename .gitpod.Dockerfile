@@ -72,8 +72,8 @@ RUN mkdir -p /workspace/{projects,templates,examples,docs,scripts}
 # Set up Git configuration
 RUN git config --global init.defaultBranch main && \
     git config --global pull.rebase false && \
-    git config --global user.name "Gitpod User" && \
-    git config --global user.email "gitpod@example.com"
+    git config --global user.name "FireZombieCoder" && \
+    git config --global user.email "firezombify@gmail.com"
 
 # Switch back to gitpod user
 USER gitpod

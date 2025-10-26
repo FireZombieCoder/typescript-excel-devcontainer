@@ -159,9 +159,9 @@ env:
 git:
   config:
     - name: user.name
-      value: \$(git config user.name || echo "GitPod User")
+      value: \$(git config user.name || echo "FireZombieCoder")
     - name: user.email
-      value: \$(git config user.email || echo "gitpod@example.com")
+      value: \$(git config user.email || echo "firezombify@gmail.com")
 
 # Workspace settings
 workspace:
@@ -401,7 +401,7 @@ if [ ! -f "package.json" ]; then
     "gitpod": "./quick-start-gitpod.sh"
   },
   "keywords": ["typescript", "excel", "office-js", "gitpod", "devcontainer"],
-  "author": "Your Name",
+  "author": "FireZombieCoder",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.0.0",

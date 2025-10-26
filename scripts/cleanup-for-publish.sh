@@ -124,9 +124,9 @@ fi
 print_step "Checking for personal information..."
 
 # Check for email addresses (excluding example.com)
-if grep -r -E "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" . --exclude-dir=.git --exclude-dir=node_modules | grep -v "example.com\|gitpod@example.com" >/dev/null 2>&1; then
+if grep -r -E "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" . --exclude-dir=.git --exclude-dir=node_modules | grep -v "example.com\|firezombify@gmail.com" >/dev/null 2>&1; then
     print_warning "Personal email addresses found. Please review:"
-    grep -r -E "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" . --exclude-dir=.git --exclude-dir=node_modules | grep -v "example.com\|gitpod@example.com" || true
+    grep -r -E "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" . --exclude-dir=.git --exclude-dir=node_modules | grep -v "example.com\|firezombify@gmail.com" || true
 else
     print_success "No personal email addresses found"
 fi
@@ -151,7 +151,7 @@ find . -name "*.sh" -exec sed -i 's|FireZombieCoder|FireZombieCoder|g' {} \;
 find . -name "*.sh" -exec sed -i 's|typescript-excel-devcontainer|typescript-excel-devcontainer|g' {} \;
 
 # Update author information
-find . -name "package.json" -exec sed -i 's|"Your Name"|"FireZombieCoder"|g' {} \;
+find . -name "package.json" -exec sed -i 's|"FireZombieCoder"|"FireZombieCoder"|g' {} \;
 
 print_success "Placeholder information updated"
 

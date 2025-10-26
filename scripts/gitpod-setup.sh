@@ -69,8 +69,8 @@ fi
 print_step "Configuring Git..."
 git config --global init.defaultBranch main
 git config --global pull.rebase false
-git config --global user.name "Gitpod User"
-git config --global user.email "gitpod@example.com"
+git config --global user.name "FireZombieCoder"
+git config --global user.email "firezombify@gmail.com"
 print_success "Git configured"
 
 # Create workspace structure

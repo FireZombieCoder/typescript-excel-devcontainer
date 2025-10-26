@@ -119,7 +119,7 @@ init_package_json() {
     "dev-server": "webpack serve --mode development --open"
   },
   "keywords": ["excel", "add-in", "typescript", "office-js"],
-  "author": "Your Name",
+  "author": "FireZombieCoder",
   "license": "MIT",
   "dependencies": {
     "@microsoft/office-js": "^1.1.110",

@@ -292,8 +292,8 @@ env:
 
 # Git configuration
 gitConfig:
-  user.name: "Gitpod User"
-  user.email: "gitpod@example.com"
+  user.name: "FireZombieCoder"
+  user.email: "firezombify@gmail.com"
 
 # IDE preferences
 ide: vscode
@@ -444,7 +444,7 @@ create_gitpod_package_json() {
     "wsl2",
     "windows"
   ],
-  "author": "Your Name",
+  "author": "FireZombieCoder",
   "license": "MIT",
   "repository": {
     "type": "git",

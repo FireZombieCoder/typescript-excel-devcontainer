@@ -128,7 +128,7 @@ cat > package.json << 'EOF'
     "typescript",
     "office-js"
   ],
-  "author": "Your Name",
+  "author": "FireZombieCoder",
   "license": "MIT"
 }
 EOF
