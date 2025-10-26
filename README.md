@@ -206,6 +206,7 @@ npm run dev-server     # Start development server
 - [Getting Started Guide](docs/getting-started.md) - Step-by-step setup and development
 - [DevContainer Usage Guide](docs/devcontainer-usage-guide.md) - Complete guide for using Dev Containers
 - [Troubleshooting Guide](docs/troubleshooting.md) - Common issues and solutions
+- [GitIgnore Reference](docs/gitignore-reference.md) - Comprehensive guide to ignore rules and configuration
 
 ### Configuration Files
 - `.gitignore` - Comprehensive ignore rules for Node.js, TypeScript, and devcontainer projects
