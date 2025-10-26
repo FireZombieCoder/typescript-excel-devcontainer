@@ -21,6 +21,10 @@ DevContainer/
 ├── devcontainer.json       # VS Code devcontainer configuration
 └── README.md              # This file
 
+.gitignore                 # Git ignore rules
+.gitattributes            # Line ending normalization
+.dockerignore             # Docker build optimization
+
 examples/                   # Example projects and demos
 ├── excel-addin-basic/     # Basic Excel Add-in example
 ├── excel-function-builder/ # Excel function builder example
@@ -47,10 +51,12 @@ scripts/                   # Utility scripts
 ### Prerequisites
 
 - [Docker](https://www.docker.com/get-started)
-- [VS Code](https://code.visualstudio.com/)
+- [Cursor IDE](https://cursor.sh/) or [VS Code](https://code.visualstudio.com/)
 - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ### Getting Started
+
+#### Option 1: Using the Helper Script (Recommended)
 
 1. **Clone or download this repository**
    ```bash
@@ -58,10 +64,28 @@ scripts/                   # Utility scripts
    cd Devcontainers
    ```
 
-2. **Open in VS Code with Dev Containers**
-   - Open VS Code
+2. **Open the devcontainer using the helper script**
+   ```bash
+   ./scripts/open-devcontainer.sh
+   ```
+
+3. **Or build and open in one command**
+   ```bash
+   ./scripts/open-devcontainer.sh --build
+   ```
+
+#### Option 2: Manual Setup
+
+1. **Clone or download this repository**
+   ```bash
+   git clone <repository-url>
+   cd Devcontainers
+   ```
+
+2. **Open in Cursor IDE with Dev Containers**
+   - Open Cursor IDE
    - Open the `DevContainer` folder
-   - VS Code should prompt you to "Reopen in Container"
+   - Cursor should prompt you to "Reopen in Container"
    - Click "Reopen in Container"
 
 3. **Wait for the container to build**
@@ -73,6 +97,22 @@ scripts/                   # Utility scripts
    - Choose a template and copy it to your project
    - Run `npm install` to install dependencies
    - Run `npm run dev-server` to start development
+
+### Command-Line Usage
+
+For advanced users, you can open the devcontainer directly via command-line:
+
+```bash
+# Using the helper script
+./scripts/open-devcontainer.sh
+
+# Or manually with Cursor CLI
+CONF='{"settingType":"config", "workspacePath": ".", "devcontainerPath": "./DevContainer/devcontainer.json"}'
+HEX_CONF=$(printf "$CONF" | od -A n -t x1 | tr -d '[\n\t ]')
+cursor --folder-uri "vscode-remote://dev-container+${HEX_CONF}/workspaces"
+```
+
+For detailed command-line usage, see the [DevContainer Usage Guide](docs/devcontainer-usage-guide.md).
 
 ## 📚 Available Templates
 
@@ -160,8 +200,19 @@ npm run validate       # Validate Add-in manifest
 npm run dev-server     # Start development server
 ```
 
-## 🎯 Office.js Resources
+## 📚 Documentation
 
+### Internal Guides
+- [Getting Started Guide](docs/getting-started.md) - Step-by-step setup and development
+- [DevContainer Usage Guide](docs/devcontainer-usage-guide.md) - Complete guide for using Dev Containers
+- [Troubleshooting Guide](docs/troubleshooting.md) - Common issues and solutions
+
+### Configuration Files
+- `.gitignore` - Comprehensive ignore rules for Node.js, TypeScript, and devcontainer projects
+- `.gitattributes` - Line ending normalization for cross-platform development
+- `.dockerignore` - Docker build optimization by excluding unnecessary files
+
+### Office.js Resources
 - [Office.js API Documentation](https://docs.microsoft.com/en-us/office/dev/add-ins/reference/overview/office-add-ins-reference-overview)
 - [Excel Add-in Development](https://docs.microsoft.com/en-us/office/dev/add-ins/excel/)
 - [Office Add-in Samples](https://github.com/OfficeDev/Office-Add-in-samples)
