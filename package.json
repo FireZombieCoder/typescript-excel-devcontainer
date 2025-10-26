@@ -1,0 +1,31 @@
+{
+  "name": "typescript-excel-devcontainer",
+  "version": "1.0.0",
+  "description": "A comprehensive devcontainer for TypeScript Excel development with Office.js integration",
+  "main": "index.js",
+  "scripts": {
+    "setup-project": "./scripts/setup-project.sh",
+    "build-all": "./scripts/build-all.sh",
+    "test-all": "./scripts/test-all.sh",
+    "dev": "echo 'Open DevContainer folder in VS Code and use Dev Containers extension'",
+    "help": "echo 'Available commands: setup-project, build-all, test-all, dev'"
+  },
+  "keywords": [
+    "devcontainer",
+    "typescript",
+    "excel",
+    "office-js",
+    "add-in",
+    "development-environment"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/typescript-excel-devcontainer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/typescript-excel-devcontainer/issues"
+  },
+  "homepage": "https://github.com/your-username/typescript-excel-devcontainer#readme"
+}

@@ -59,19 +59,31 @@ check_prerequisites() {
 # Function to create project structure
 create_project_structure() {
     local project_name=$1
-    local project_path="/workspaces/$project_name"
+    local project_path="./projects/$project_name"
     
     print_status "Creating project structure for $project_name..."
     
+    # Create projects directory if it doesn't exist
+    mkdir -p "./projects"
+    
     # Create project directory
     mkdir -p "$project_path"
-    cd "$project_path"
     
     # Create directory structure
-    mkdir -p src/{components,utils,types,services}
-    mkdir -p tests
-    mkdir -p docs
-    mkdir -p assets/{images,icons,css}
+    mkdir -p "$project_path/src/components"
+    mkdir -p "$project_path/src/utils"
+    mkdir -p "$project_path/src/types"
+    mkdir -p "$project_path/src/services"
+    mkdir -p "$project_path/tests"
+    mkdir -p "$project_path/docs"
+    mkdir -p "$project_path/assets/images"
+    mkdir -p "$project_path/assets/icons"
+    mkdir -p "$project_path/assets/css"
+    
+    # Remove any nested projects directory that might have been created
+    if [ -d "$project_path/projects" ]; then
+        rm -rf "$project_path/projects"
+    fi
     
     print_success "Project structure created."
 }
@@ -79,7 +91,7 @@ create_project_structure() {
 # Function to initialize package.json
 init_package_json() {
     local project_name=$1
-    local project_path="/workspaces/$project_name"
+    local project_path="./projects/$project_name"
     
     print_status "Initializing package.json..."
     
@@ -110,8 +122,8 @@ init_package_json() {
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "office-js": "^1.1.0",
-    "office-js-helpers": "^1.0.0"
+    "@microsoft/office-js": "^1.1.110",
+    "@microsoft/office-js-helpers": "^1.0.2"
   },
   "devDependencies": {
     "@types/office-js": "^1.0.0",
@@ -141,46 +153,44 @@ copy_config_files() {
     
     print_status "Copying configuration files..."
     
-    cd "$project_path"
-    
     # Copy TypeScript configuration
-    if [ -f "/workspaces/tsconfig.json" ]; then
-        cp /workspaces/tsconfig.json .
+    if [ -f "DevContainer/tsconfig.json" ]; then
+        cp DevContainer/tsconfig.json "$project_path/"
         print_success "tsconfig.json copied."
     else
-        print_warning "tsconfig.json not found in workspace root."
+        print_warning "tsconfig.json not found in DevContainer directory."
     fi
     
     # Copy webpack configuration
-    if [ -f "/workspaces/webpack.config.js" ]; then
-        cp /workspaces/webpack.config.js .
+    if [ -f "DevContainer/webpack.config.js" ]; then
+        cp DevContainer/webpack.config.js "$project_path/"
         print_success "webpack.config.js copied."
     else
-        print_warning "webpack.config.js not found in workspace root."
+        print_warning "webpack.config.js not found in DevContainer directory."
     fi
     
     # Copy ESLint configuration
-    if [ -f "/workspaces/.eslintrc.js" ]; then
-        cp /workspaces/.eslintrc.js .
+    if [ -f "DevContainer/.eslintrc.js" ]; then
+        cp DevContainer/.eslintrc.js "$project_path/"
         print_success ".eslintrc.js copied."
     else
-        print_warning ".eslintrc.js not found in workspace root."
+        print_warning ".eslintrc.js not found in DevContainer directory."
     fi
     
     # Copy Prettier configuration
-    if [ -f "/workspaces/.prettierrc" ]; then
-        cp /workspaces/.prettierrc .
+    if [ -f "DevContainer/.prettierrc" ]; then
+        cp DevContainer/.prettierrc "$project_path/"
         print_success ".prettierrc copied."
     else
-        print_warning ".prettierrc not found in workspace root."
+        print_warning ".prettierrc not found in DevContainer directory."
     fi
     
     # Copy Jest configuration
-    if [ -f "/workspaces/jest.config.js" ]; then
-        cp /workspaces/jest.config.js .
+    if [ -f "DevContainer/jest.config.js" ]; then
+        cp DevContainer/jest.config.js "$project_path/"
         print_success "jest.config.js copied."
     else
-        print_warning "jest.config.js not found in workspace root."
+        print_warning "jest.config.js not found in DevContainer directory."
     fi
 }
 
@@ -190,10 +200,14 @@ create_source_files() {
     
     print_status "Creating basic source files..."
     
-    cd "$project_path"
+    # Ensure all directories exist
+    mkdir -p "$project_path/src"
+    mkdir -p "$project_path/src/types"
+    mkdir -p "$project_path/src/utils"
+    mkdir -p "$project_path/tests"
     
     # Create main HTML file
-    cat > src/index.html << 'EOF'
+    cat > "$project_path/src/index.html" << 'EOF'
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,7 +229,7 @@ create_source_files() {
 EOF
     
     # Create main TypeScript file
-    cat > src/index.ts << 'EOF'
+    cat > "$project_path/src/index.ts" << 'EOF'
 // Initialize Office.js
 Office.onReady((info) => {
     if (info.host === Office.HostType.Excel) {
@@ -238,7 +252,7 @@ async function run() {
 EOF
     
     # Create types file
-    cat > src/types/index.ts << 'EOF'
+    cat > "$project_path/src/types/index.ts" << 'EOF'
 // Type definitions for your Excel Add-in
 
 export interface ExcelRange {
@@ -257,7 +271,7 @@ export interface ExcelWorkbook {
 EOF
     
     # Create utils file
-    cat > src/utils/index.ts << 'EOF'
+    cat > "$project_path/src/utils/index.ts" << 'EOF'
 // Utility functions for your Excel Add-in
 
 export function formatCellValue(value: any): string {
@@ -276,7 +290,7 @@ export function isValidRange(range: any): boolean {
 EOF
     
     # Create basic test file
-    cat > tests/index.test.ts << 'EOF'
+    cat > "$project_path/tests/index.test.ts" << 'EOF'
 import { formatCellValue, isValidRange } from '../src/utils';
 
 describe('Utility Functions', () => {
@@ -304,9 +318,7 @@ install_dependencies() {
     
     print_status "Installing dependencies..."
     
-    cd "$project_path"
-    
-    if npm install; then
+    if (cd "$project_path" && npm install); then
         print_success "Dependencies installed successfully."
     else
         print_error "Failed to install dependencies."
@@ -317,13 +329,11 @@ install_dependencies() {
 # Function to create README
 create_readme() {
     local project_name=$1
-    local project_path=$2
+    local project_path="./projects/$project_name"
     
     print_status "Creating README.md..."
     
-    cd "$project_path"
-    
-    cat > README.md << EOF
+    cat > "$project_path/README.md" << EOF
 # $project_name
 
 A TypeScript Excel Add-in built with Office.js.
@@ -404,21 +414,26 @@ main() {
     init_package_json "$project_name"
     
     # Copy configuration files
-    copy_config_files "/workspaces/$project_name"
+    copy_config_files "./projects/$project_name"
     
     # Create source files
-    create_source_files "/workspaces/$project_name"
+    create_source_files "./projects/$project_name"
     
     # Install dependencies
-    install_dependencies "/workspaces/$project_name"
+    install_dependencies "./projects/$project_name"
     
     # Create README
-    create_readme "$project_name" "/workspaces/$project_name"
+    create_readme "$project_name" "./projects/$project_name"
     
     print_success "Project setup complete!"
     print_status "To start developing:"
-    print_status "  cd /workspaces/$project_name"
+    print_status "  cd ./projects/$project_name"
     print_status "  npm run dev-server"
+    print_status ""
+    print_status "Note: For full Office.js functionality, use this devcontainer in VS Code:"
+    print_status "  1. Open the DevContainer folder in VS Code"
+    print_status "  2. Click 'Reopen in Container' when prompted"
+    print_status "  3. Your project will be available in /workspaces/projects/$project_name"
 }
 
 # Run main function with all arguments

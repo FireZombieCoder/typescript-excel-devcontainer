@@ -1,0 +1,678 @@
+{
+  "services": {
+    "safeToDisable": [
+      {
+        "name": "Fax",
+        "displayName": "Fax Service",
+        "description": "Sends and receives fax transmissions",
+        "category": "Communication",
+        "impact": "None",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using fax functionality"
+      },
+      {
+        "name": "XblAuthManager",
+        "displayName": "Xbox Live Auth Manager",
+        "description": "Provides authentication and authorization services for Xbox Live",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live services"
+      },
+      {
+        "name": "XblGameSave",
+        "displayName": "Xbox Live Game Save",
+        "description": "Provides game save synchronization for Xbox Live",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live game saves"
+      },
+      {
+        "name": "XboxGipSvc",
+        "displayName": "Xbox Accessory Management Service",
+        "description": "Manages Xbox accessories and controllers",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox accessories"
+      },
+      {
+        "name": "XboxNetApiSvc",
+        "displayName": "Xbox Live Networking Service",
+        "description": "Provides networking services for Xbox Live",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live networking"
+      },
+      {
+        "name": "RemoteRegistry",
+        "displayName": "Remote Registry",
+        "description": "Allows remote registry manipulation",
+        "category": "System",
+        "impact": "None",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "Medium",
+        "recommendation": "Disable for security - not needed for most users"
+      },
+      {
+        "name": "Telnet",
+        "displayName": "Telnet",
+        "description": "Provides Telnet client functionality",
+        "category": "Communication",
+        "impact": "None",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "High",
+        "recommendation": "Disable for security - use SSH instead"
+      },
+      {
+        "name": "TlntSvr",
+        "displayName": "Telnet Server",
+        "description": "Provides Telnet server functionality",
+        "category": "Communication",
+        "impact": "None",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "High",
+        "recommendation": "Disable for security - use SSH instead"
+      },
+      {
+        "name": "WSearch",
+        "displayName": "Windows Search",
+        "description": "Indexes content for Windows Search",
+        "category": "System",
+        "impact": "High",
+        "memoryUsage": "High",
+        "cpuUsage": "High",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Windows Search frequently"
+      },
+      {
+        "name": "TabletInputService",
+        "displayName": "Touch Keyboard and Handwriting Panel Service",
+        "description": "Enables touch keyboard and handwriting panel",
+        "category": "Input",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using touch input"
+      },
+      {
+        "name": "WbioSrvc",
+        "DisplayName": "Windows Biometric Service",
+        "description": "Supports biometric authentication",
+        "category": "Security",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using biometric authentication"
+      },
+      {
+        "name": "WMPNetworkSvc",
+        "displayName": "Windows Media Player Network Sharing Service",
+        "description": "Shares Windows Media Player libraries",
+        "category": "Media",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless sharing media libraries"
+      },
+      {
+        "name": "WpnService",
+        "displayName": "Windows Push Notifications System Service",
+        "description": "Manages push notifications",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using push notifications"
+      },
+      {
+        "name": "XboxLiveAuthManager",
+        "displayName": "Xbox Live Auth Manager",
+        "description": "Xbox Live authentication service",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live"
+      },
+      {
+        "name": "XboxLiveGameSave",
+        "displayName": "Xbox Live Game Save",
+        "description": "Xbox Live game save synchronization",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live game saves"
+      },
+      {
+        "name": "XboxNetApiSvc",
+        "displayName": "Xbox Live Networking Service",
+        "description": "Xbox Live networking service",
+        "category": "Gaming",
+        "impact": "Low",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable unless using Xbox Live networking"
+      }
+    ],
+    "essential": [
+      {
+        "name": "AudioSrv",
+        "displayName": "Windows Audio",
+        "description": "Manages audio for Windows programs",
+        "category": "Hardware",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Never disable - required for audio"
+      },
+      {
+        "name": "AudioEndpointBuilder",
+        "displayName": "Windows Audio Endpoint Builder",
+        "description": "Manages audio endpoints",
+        "category": "Hardware",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Never disable - required for audio"
+      },
+      {
+        "name": "BITS",
+        "displayName": "Background Intelligent Transfer Service",
+        "description": "Transfers files in the background",
+        "category": "System",
+        "impact": "High",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Keep enabled - used by Windows Update"
+      },
+      {
+        "name": "CryptSvc",
+        "displayName": "Cryptographic Services",
+        "description": "Provides cryptographic services",
+        "category": "Security",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "High",
+        "recommendation": "Never disable - required for security"
+      },
+      {
+        "name": "DcomLaunch",
+        "displayName": "DCOM Server Process Launcher",
+        "description": "Launches DCOM processes",
+        "category": "System",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "High",
+        "recommendation": "Never disable - required for system"
+      },
+      {
+        "name": "Dhcp",
+        "displayName": "DHCP Client",
+        "description": "Obtains IP addresses automatically",
+        "category": "Network",
+        "impact": "High",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Keep enabled - required for networking"
+      },
+      {
+        "name": "Dnscache",
+        "displayName": "DNS Client",
+        "description": "Resolves DNS names",
+        "category": "Network",
+        "impact": "High",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Keep enabled - required for networking"
+      },
+      {
+        "name": "EventLog",
+        "displayName": "Windows Event Log",
+        "description": "Manages event logs",
+        "category": "System",
+        "impact": "High",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Keep enabled - required for logging"
+      },
+      {
+        "name": "LanmanServer",
+        "displayName": "Server",
+        "description": "Provides file and printer sharing",
+        "category": "Network",
+        "impact": "Medium",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "Low",
+        "recommendation": "Disable if not sharing files/printers"
+      },
+      {
+        "name": "LanmanWorkstation",
+        "displayName": "Workstation",
+        "description": "Accesses remote files and printers",
+        "category": "Network",
+        "impact": "Medium",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "Low",
+        "recommendation": "Keep enabled - used by many applications"
+      },
+      {
+        "name": "PlugPlay",
+        "displayName": "Plug and Play",
+        "description": "Manages device installation",
+        "category": "Hardware",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Never disable - required for hardware"
+      },
+      {
+        "name": "Power",
+        "displayName": "Power",
+        "description": "Manages power settings",
+        "category": "System",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Never disable - required for power management"
+      },
+      {
+        "name": "RpcSs",
+        "displayName": "Remote Procedure Call (RPC)",
+        "description": "Provides RPC services",
+        "category": "System",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "High",
+        "recommendation": "Never disable - required for system"
+      },
+      {
+        "name": "Spooler",
+        "displayName": "Print Spooler",
+        "description": "Manages print jobs",
+        "category": "Hardware",
+        "impact": "Medium",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using printers"
+      },
+      {
+        "name": "Tcpip",
+        "displayName": "TCP/IP Protocol Driver",
+        "description": "Provides TCP/IP networking",
+        "category": "Network",
+        "impact": "Critical",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Never disable - required for networking"
+      },
+      {
+        "name": "Themes",
+        "displayName": "Themes",
+        "description": "Manages visual themes",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable for maximum performance"
+      },
+      {
+        "name": "Winmgmt",
+        "displayName": "Windows Management Instrumentation",
+        "description": "Provides system management information",
+        "category": "System",
+        "impact": "High",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Low",
+        "securityRisk": "None",
+        "recommendation": "Keep enabled - used by many applications"
+      }
+    ],
+    "conditional": [
+      {
+        "name": "BthAvctpSvc",
+        "displayName": "AVCTP Service",
+        "description": "Audio/Video Control Transport Protocol",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth audio"
+      },
+      {
+        "name": "BthHFSrv",
+        "displayName": "Bluetooth Handsfree Service",
+        "description": "Bluetooth handsfree service",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth handsfree"
+      },
+      {
+        "name": "BthHidServ",
+        "displayName": "Bluetooth HID Service",
+        "description": "Bluetooth human interface device service",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth input devices"
+      },
+      {
+        "name": "BthLEEnum",
+        "displayName": "Bluetooth LE Enumerator Service",
+        "description": "Bluetooth Low Energy enumerator",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth LE devices"
+      },
+      {
+        "name": "BthPan",
+        "displayName": "Bluetooth PAN Service",
+        "description": "Bluetooth Personal Area Network",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth PAN"
+      },
+      {
+        "name": "BthPort",
+        "displayName": "Bluetooth Port Service",
+        "description": "Bluetooth port service",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth"
+      },
+      {
+        "name": "BthServ",
+        "displayName": "Bluetooth Support Service",
+        "description": "Bluetooth support service",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using Bluetooth"
+      },
+      {
+        "name": "CDPUserSvc",
+        "displayName": "Connected Devices Platform User Service",
+        "description": "Connected devices platform user service",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using connected devices"
+      },
+      {
+        "name": "CDPSvc",
+        "displayName": "Connected Devices Platform Service",
+        "description": "Connected devices platform service",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using connected devices"
+      },
+      {
+        "name": "CDPUserSvc",
+        "displayName": "Connected Devices Platform User Service",
+        "description": "Connected devices platform user service",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "None",
+        "securityRisk": "None",
+        "recommendation": "Disable if not using connected devices"
+      }
+    ]
+  },
+  "visualEffects": {
+    "highImpact": [
+      {
+        "name": "DesktopComposition",
+        "displayName": "Desktop composition",
+        "description": "Hardware-accelerated desktop composition",
+        "performanceImpact": "High",
+        "memoryUsage": "High",
+        "cpuUsage": "High",
+        "safeToDisable": false,
+        "recommendation": "Keep enabled - required for modern Windows"
+      },
+      {
+        "name": "Animations",
+        "displayName": "Animations",
+        "description": "General system animations",
+        "performanceImpact": "High",
+        "memoryUsage": "Medium",
+        "cpuUsage": "High",
+        "safeToDisable": true,
+        "recommendation": "Disable for maximum performance"
+      },
+      {
+        "name": "DragFullWindows",
+        "displayName": "Drag full windows",
+        "description": "Shows window content while dragging",
+        "performanceImpact": "High",
+        "memoryUsage": "High",
+        "cpuUsage": "High",
+        "safeToDisable": true,
+        "recommendation": "Disable for maximum performance"
+      }
+    ],
+    "mediumImpact": [
+      {
+        "name": "AnimateControlsAndElementsInsideWindows",
+        "displayName": "Animate controls and elements inside windows",
+        "description": "Animates UI elements within windows",
+        "performanceImpact": "Medium",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Medium",
+        "safeToDisable": true,
+        "recommendation": "Disable for better performance"
+      },
+      {
+        "name": "AnimateWindowsWhenMinimizingAndMaximizing",
+        "displayName": "Animate windows when minimizing and maximizing",
+        "description": "Animates window minimize/maximize operations",
+        "performanceImpact": "Medium",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Medium",
+        "safeToDisable": true,
+        "recommendation": "Disable for better performance"
+      },
+      {
+        "name": "ClientSideShadow",
+        "displayName": "Client-side shadows",
+        "description": "Shadows for windows and menus",
+        "performanceImpact": "Medium",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Medium",
+        "safeToDisable": true,
+        "recommendation": "Disable for better performance"
+      },
+      {
+        "name": "TaskbarAnimations",
+        "displayName": "Taskbar animations",
+        "description": "Animates taskbar elements",
+        "performanceImpact": "Medium",
+        "memoryUsage": "Medium",
+        "cpuUsage": "Medium",
+        "safeToDisable": true,
+        "recommendation": "Disable for better performance"
+      }
+    ],
+    "lowImpact": [
+      {
+        "name": "ComboBoxAnimation",
+        "displayName": "Combo box animation",
+        "description": "Animates combo box dropdowns",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "CursorShadow",
+        "displayName": "Cursor shadow",
+        "description": "Shadow behind the mouse cursor",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "DropShadow",
+        "displayName": "Drop shadow",
+        "description": "Shadows for desktop icons",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "ListBoxSmoothScrolling",
+        "displayName": "List box smooth scrolling",
+        "description": "Smooth scrolling in list boxes",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "MenuAnimation",
+        "displayName": "Menu animation",
+        "description": "Animates menu appearance",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "MenuFade",
+        "displayName": "Menu fade",
+        "description": "Fade effect for menus",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "SelectionFade",
+        "displayName": "Selection fade",
+        "description": "Fade effect for selections",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "TooltipAnimation",
+        "displayName": "Tooltip animation",
+        "description": "Animates tooltip appearance",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      },
+      {
+        "name": "WindowMinimizingAnimation",
+        "displayName": "Window minimizing animation",
+        "description": "Animates window minimizing",
+        "performanceImpact": "Low",
+        "memoryUsage": "Low",
+        "cpuUsage": "Low",
+        "safeToDisable": true,
+        "recommendation": "Disable for minimal performance gain"
+      }
+    ]
+  },
+  "optimizationTips": {
+    "services": [
+      "Disable gaming services if not using Xbox Live",
+      "Disable communication services if not using fax or telnet",
+      "Disable search services if not using Windows Search frequently",
+      "Disable media services if not sharing media libraries",
+      "Disable Bluetooth services if not using Bluetooth devices",
+      "Keep essential services enabled for system stability",
+      "Regularly review and clean up unnecessary services"
+    ],
+    "visualEffects": [
+      "Disable high-impact animations for maximum performance",
+      "Keep desktop composition enabled for modern Windows",
+      "Disable window dragging effects for better performance",
+      "Disable taskbar animations for faster taskbar response",
+      "Disable menu animations for faster menu response",
+      "Disable cursor shadows for minimal performance gain",
+      "Use 'Adjust for best performance' setting for maximum speed"
+    ],
+    "general": [
+      "Restart after making changes for full effect",
+      "Monitor system performance after optimization",
+      "Keep a backup of original settings",
+      "Test applications after optimization",
+      "Regularly review and update optimizations"
+    ]
+  }
+}

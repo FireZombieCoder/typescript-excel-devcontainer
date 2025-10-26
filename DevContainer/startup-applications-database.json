@@ -1,0 +1,343 @@
+{
+  "startupApplications": {
+    "essential": [
+      {
+        "name": "Windows Security",
+        "description": "Windows Defender antivirus protection",
+        "recommendation": "Keep enabled",
+        "category": "Security",
+        "impact": "Low",
+        "memoryUsage": "Low"
+      },
+      {
+        "name": "Windows Update",
+        "description": "Automatic Windows updates",
+        "recommendation": "Keep enabled",
+        "category": "System",
+        "impact": "Low",
+        "memoryUsage": "Low"
+      },
+      {
+        "name": "Audio Driver",
+        "description": "Audio device drivers",
+        "recommendation": "Keep enabled",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Low"
+      },
+      {
+        "name": "Graphics Driver",
+        "description": "GPU drivers and control panel",
+        "recommendation": "Keep enabled",
+        "category": "Hardware",
+        "impact": "Low",
+        "memoryUsage": "Medium"
+      }
+    ],
+    "gaming": [
+      {
+        "name": "Steam",
+        "description": "Steam gaming platform",
+        "recommendation": "Disable unless gaming immediately",
+        "category": "Gaming",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Epic Games Launcher",
+        "description": "Epic Games Store launcher",
+        "recommendation": "Disable unless gaming immediately",
+        "category": "Gaming",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Origin",
+        "description": "EA Origin gaming platform",
+        "recommendation": "Disable unless gaming immediately",
+        "category": "Gaming",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Battle.net",
+        "description": "Blizzard Battle.net launcher",
+        "recommendation": "Disable unless gaming immediately",
+        "category": "Gaming",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Discord",
+        "description": "Gaming communication platform",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Gaming",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Riot Games",
+        "description": "Riot Games launcher",
+        "recommendation": "Disable unless gaming immediately",
+        "category": "Gaming",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      }
+    ],
+    "media": [
+      {
+        "name": "Spotify",
+        "description": "Music streaming service",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Media",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "iTunes",
+        "description": "Apple iTunes media player",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Media",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "VLC Media Player",
+        "description": "Video and audio player",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Media",
+        "impact": "Low",
+        "memoryUsage": "Low",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Adobe Creative Cloud",
+        "description": "Adobe Creative Suite launcher",
+        "recommendation": "Disable unless using Adobe apps immediately",
+        "category": "Media",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Adobe Acrobat",
+        "description": "PDF reader and editor",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Media",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      }
+    ],
+    "cloud": [
+      {
+        "name": "Dropbox",
+        "description": "Cloud file synchronization",
+        "recommendation": "Disable unless syncing immediately",
+        "category": "Cloud",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "OneDrive",
+        "description": "Microsoft cloud storage",
+        "recommendation": "Keep enabled if using Microsoft ecosystem",
+        "category": "Cloud",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Disable if not using Microsoft services"
+      },
+      {
+        "name": "Google Drive",
+        "description": "Google cloud storage",
+        "recommendation": "Disable unless syncing immediately",
+        "category": "Cloud",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "iCloud",
+        "description": "Apple cloud storage",
+        "recommendation": "Disable unless syncing immediately",
+        "category": "Cloud",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      }
+    ],
+    "communication": [
+      {
+        "name": "Skype",
+        "description": "Microsoft communication platform",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Communication",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Zoom",
+        "description": "Video conferencing platform",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Communication",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Microsoft Teams",
+        "description": "Microsoft collaboration platform",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Communication",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "Slack",
+        "description": "Team communication platform",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Communication",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Start manually when needed"
+      },
+      {
+        "name": "WhatsApp",
+        "description": "Messaging application",
+        "recommendation": "Disable unless needed immediately",
+        "category": "Communication",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Start manually when needed"
+      }
+    ],
+    "utilities": [
+      {
+        "name": "CCleaner",
+        "description": "System cleaning utility",
+        "recommendation": "Disable - not needed at startup",
+        "category": "Utilities",
+        "impact": "Medium",
+        "memoryUsage": "Medium",
+        "alternatives": "Run manually when needed"
+      },
+      {
+        "name": "Advanced SystemCare",
+        "description": "System optimization utility",
+        "recommendation": "Disable - not needed at startup",
+        "category": "Utilities",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Run manually when needed"
+      },
+      {
+        "name": "IObit",
+        "description": "System optimization suite",
+        "recommendation": "Disable - not needed at startup",
+        "category": "Utilities",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Run manually when needed"
+      },
+      {
+        "name": "Avast",
+        "description": "Third-party antivirus",
+        "recommendation": "Keep enabled if primary antivirus",
+        "category": "Security",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Use Windows Defender instead"
+      },
+      {
+        "name": "McAfee",
+        "description": "Third-party antivirus",
+        "recommendation": "Consider removing - Windows Defender is sufficient",
+        "category": "Security",
+        "impact": "High",
+        "memoryUsage": "High",
+        "alternatives": "Use Windows Defender instead"
+      }
+    ],
+    "unknown": [
+      {
+        "name": "Unknown Application",
+        "description": "Application not in database",
+        "recommendation": "Research before disabling",
+        "category": "Unknown",
+        "impact": "Unknown",
+        "memoryUsage": "Unknown",
+        "alternatives": "Check Task Manager for details"
+      }
+    ]
+  },
+  "optimizationTips": {
+    "general": [
+      "Disable applications you don't use immediately after boot",
+      "Keep only essential security and system applications",
+      "Use Task Manager to check startup impact",
+      "Regularly review and clean up startup applications",
+      "Consider using Windows Defender instead of third-party antivirus"
+    ],
+    "gaming": [
+      "Disable all gaming launchers unless gaming immediately",
+      "Start gaming platforms manually when needed",
+      "Consider using Steam's 'Start with Windows' option instead",
+      "Disable gaming overlays and recording software"
+    ],
+    "media": [
+      "Disable media players unless needed immediately",
+      "Start media applications manually when needed",
+      "Consider using web-based alternatives",
+      "Disable Adobe Creative Cloud unless using Adobe apps"
+    ],
+    "cloud": [
+      "Disable cloud sync unless needed immediately",
+      "Use selective sync instead of full sync",
+      "Consider using web-based cloud storage",
+      "Keep only one cloud storage service enabled"
+    ],
+    "communication": [
+      "Disable communication apps unless needed immediately",
+      "Start communication apps manually when needed",
+      "Use web-based alternatives when possible",
+      "Disable unnecessary chat applications"
+    ]
+  },
+  "performanceImpact": {
+    "low": {
+      "description": "Minimal impact on boot time and system performance",
+      "memoryUsage": "Less than 50MB",
+      "recommendation": "Safe to keep enabled"
+    },
+    "medium": {
+      "description": "Moderate impact on boot time and system performance",
+      "memoryUsage": "50-200MB",
+      "recommendation": "Consider disabling if not needed immediately"
+    },
+    "high": {
+      "description": "Significant impact on boot time and system performance",
+      "memoryUsage": "More than 200MB",
+      "recommendation": "Disable unless essential"
+    }
+  },
+  "categories": {
+    "essential": "Critical system applications that should always be enabled",
+    "gaming": "Gaming platforms and related applications",
+    "media": "Media players and creative software",
+    "cloud": "Cloud storage and synchronization services",
+    "communication": "Communication and collaboration platforms",
+    "utilities": "System utilities and optimization tools",
+    "unknown": "Applications not recognized in the database"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "my-excel-project",
+  "version": "1.0.0",
+  "description": "TypeScript Excel Add-in",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "start": "webpack serve --mode development",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "format": "prettier --write src/**/*.{ts,tsx,json}",
+    "validate": "office-addin-validator manifest.xml",
+    "sideload": "office-addin-dev-settings sideload manifest.xml",
+    "dev-server": "webpack serve --mode development --open"
+  },
+  "keywords": ["excel", "add-in", "typescript", "office-js"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/office-js": "^1.1.110",
+    "@microsoft/office-js-helpers": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/office-js": "^1.0.0",
+    "@types/office-runtime": "^1.0.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0",
+    "ts-loader": "^9.0.0",
+    "html-webpack-plugin": "^5.0.0",
+    "css-loader": "^6.0.0",
+    "style-loader": "^3.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  }
+}

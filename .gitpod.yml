@@ -1,0 +1,202 @@
+# Gitpod configuration for TypeScript Excel Development Environment
+# Optimized for Office Add-in development on Windows 11 with WSL2
+
+image:
+  file: .gitpod.Dockerfile
+
+# Ports to expose
+ports:
+  - port: 3000
+    onOpen: open-preview
+    name: "Dev Server"
+    description: "Main development server for TypeScript Excel Add-ins"
+  - port: 8080
+    onOpen: open-preview
+    name: "Office Add-in"
+    description: "Office Add-in testing and sideloading"
+  - port: 9229
+    onOpen: ignore
+    name: "Debug Port"
+    description: "Chrome/Edge debugging port"
+
+# VS Code extensions to install
+vscode:
+  extensions:
+    # TypeScript and JavaScript development
+    - ms-vscode.vscode-typescript-next
+    - bradlc.vscode-tailwindcss
+    - esbenp.prettier-vscode
+    - ms-vscode.vscode-eslint
+    - formulahendry.auto-rename-tag
+    - christian-kohler.path-intellisense
+    - ms-vscode.vscode-json
+    
+    # Office.js and Excel development
+    - ms-vscode.vscode-office-addin-dev-tools
+    - ms-vscode.vscode-office-addin-debugger
+    - ms-vscode.vscode-office-addin-lint
+    - ms-vscode.vscode-office-addin-manifest
+    - ms-vscode.vscode-office-addin-validator
+    
+    # Web development
+    - ms-vscode.vscode-html-css-support
+    - ms-vscode.vscode-css-peek
+    - ms-vscode.vscode-htmlhint
+    - ms-vscode.vscode-css-lint
+    
+    # Testing and debugging
+    - ms-vscode.vscode-jest
+    - ms-vscode.vscode-playwright
+    - ms-vscode.vscode-debugger-for-chrome
+    - ms-vscode.vscode-debugger-for-edge
+    
+    # Git and version control
+    - eamodio.gitlens
+    - ms-vscode.vscode-github-pullrequest
+    - ms-vscode.vscode-github-actions
+    
+    # Productivity
+    - ms-vscode.vscode-thunder-client
+    - ms-vscode.vscode-restclient
+    - ms-vscode.vscode-markdown-preview-enhanced
+    - ms-vscode.vscode-drawio
+    
+    # Additional useful extensions
+    - ms-vscode.vscode-yaml
+    - ms-vscode.vscode-xml
+    - ms-vscode.vscode-markdown
+    - ms-vscode.vscode-docker
+    - ms-vscode.vscode-github-pullrequest
+
+# Tasks to run when workspace starts
+tasks:
+  - name: Setup Development Environment
+    init: |
+      echo "🚀 Setting up TypeScript Excel development environment in Gitpod..."
+      echo "📦 Installing dependencies..."
+      npm install
+      echo "🔧 Configuring development environment..."
+      ./scripts/gitpod-setup.sh
+      echo "✅ Environment setup complete!"
+  
+  - name: Start Dev Server
+    command: |
+      echo "🌐 Starting development server..."
+      echo "Your development server will be available at:"
+      echo "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      npm run dev-server
+    openMode: split-right
+
+# Environment variables
+env:
+  - name: NODE_ENV
+    value: development
+  - name: OFFICE_JS_URL
+    value: "https://appsforoffice.microsoft.com/lib/1/hosted/office.js"
+  - name: GITPOD_WORKSPACE_URL
+    value: $GITPOD_WORKSPACE_URL
+  - name: GITPOD_PREVENT_METADATA_ACCESS
+    value: "false"
+  - name: GITPOD_ANALYTICS_SEGMENT_KEY
+    value: ""
+
+# Git configuration
+gitConfig:
+  user.name: "Gitpod User"
+  user.email: "gitpod@example.com"
+
+# IDE preferences
+ide: vscode
+
+# Workspace settings
+workspaceLocation: "."
+
+# Prebuild configuration
+prebuilds:
+  addTask: "Setup Development Environment"
+  addBadge: "TypeScript Excel Dev"
+
+# VS Code settings
+vscode:
+  settings:
+    # TypeScript settings
+    typescript.preferences.importModuleSpecifier: "relative"
+    typescript.suggest.autoImports: true
+    typescript.updateImportsOnFileMove.enabled: "always"
+    typescript.preferences.includePackageJsonAutoImports: "auto"
+    
+    # JavaScript settings
+    javascript.suggest.autoImports: true
+    javascript.updateImportsOnFileMove.enabled: "always"
+    javascript.preferences.includePackageJsonAutoImports: "auto"
+    
+    # Editor settings
+    editor.formatOnSave: true
+    editor.codeActionsOnSave:
+      source.fixAll.eslint: "explicit"
+      source.organizeImports: "explicit"
+    editor.tabSize: 2
+    editor.insertSpaces: true
+    editor.detectIndentation: false
+    
+    # File associations
+    files.associations:
+      "*.ts": "typescript"
+      "*.tsx": "typescriptreact"
+      "*.js": "javascript"
+      "*.jsx": "javascriptreact"
+      "*.json": "jsonc"
+    
+    # Terminal settings
+    terminal.integrated.defaultProfile.linux: "bash"
+    terminal.integrated.profiles.linux:
+      bash:
+        path: "/bin/bash"
+        args: ["-l"]
+    
+    # Office.js settings
+    office-addin-dev-tools.enableTelemetry: false
+    office-addin-dev-tools.showWelcomePage: true
+    
+    # ESLint settings
+    eslint.validate:
+      - "javascript"
+      - "javascriptreact"
+      - "typescript"
+      - "typescriptreact"
+    eslint.workingDirectories:
+      - "/workspace"
+    
+    # Prettier settings
+    prettier.requireConfig: true
+    prettier.useEditorConfig: false
+    
+    # Jest settings
+    jest.autoRun: "off"
+    jest.showCoverageOnLoad: true
+    
+    # Playwright settings
+    playwright.showTrace: true
+    playwright.showReport: true
+    
+    # Git settings
+    git.enableSmartCommit: true
+    git.confirmSync: false
+    git.autofetch: true
+    
+    # Explorer settings
+    explorer.fileNesting.enabled: true
+    explorer.fileNesting.patterns:
+      "*.ts": "${capture}.js, ${capture}.d.ts, ${capture}.js.map"
+      "*.tsx": "${capture}.js, ${capture}.d.ts, ${capture}.js.map"
+      "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
+      "tsconfig.json": "tsconfig.*.json"
+      "webpack.config.js": "webpack.*.js"
+      "jest.config.js": "jest.*.js"
+    
+    # Workbench settings
+    workbench.colorTheme: "Default Dark+"
+    workbench.iconTheme: "vs-seti"
+    workbench.startupEditor: "welcomePage"
+    workbench.editor.enablePreview: false
+    workbench.editor.enablePreviewFromQuickOpen: false

@@ -1,0 +1,826 @@
+# Multi-stage build for Excel AppScript Performance Monitor Development Environment
+FROM node:20-bullseye-slim as base
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        curl \
+        wget \
+        ca-certificates \
+        build-essential \
+        python3 \
+        python3-pip \
+        python3-venv \
+        python3-dev \
+        unzip \
+        zip \
+        jq \
+        vim \
+        nano \
+        htop \
+        tree \
+        graphviz \
+        libcairo2-dev \
+        libpango1.0-dev \
+        libjpeg-dev \
+        libgif-dev \
+        librsvg2-dev \
+        libffi-dev \
+        libssl-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        zlib1g-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        liblcms2-dev \
+        libwebp-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libxcb1-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install global Node.js tools
+RUN npm install -g \
+    typescript \
+    ts-node \
+    @types/node \
+    eslint \
+    prettier \
+    webpack \
+    webpack-cli \
+    rollup \
+    jest \
+    @playwright/test \
+    office-addin-dev-certs \
+    office-addin-debugging \
+    office-addin-lint \
+    office-addin-manifest \
+    office-addin-prettier-config \
+    office-addin-dev-settings \
+    office-addin-sso \
+    office-addin-taskpane \
+    office-addin-validator \
+    yo \
+    generator-office \
+    @angular/cli \
+    @vue/cli \
+    create-react-app \
+    create-next-app \
+    @nestjs/cli \
+    @storybook/cli
+
+# Install Python packages for data analysis and visualization
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install \
+    numpy \
+    pandas \
+    matplotlib \
+    seaborn \
+    plotly \
+    dash \
+    jupyter \
+    notebook \
+    ipykernel \
+    scipy \
+    scikit-learn \
+    requests \
+    beautifulsoup4 \
+    lxml \
+    openpyxl \
+    xlsxwriter \
+    python-docx \
+    pillow \
+    psutil \
+    memory-profiler \
+    line-profiler \
+    py-spy
+
+# Create non-root user
+ARG USERNAME=dev
+ARG UID=1000
+ARG GID=1000
+RUN groupadd --gid ${GID} ${USERNAME} \
+    && useradd --uid ${UID} --gid ${GID} --create-home --shell /bin/bash ${USERNAME}
+
+# Switch to user
+USER ${USERNAME}
+WORKDIR /workspaces
+
+# Create project structure
+RUN mkdir -p /workspaces/{src,public,dist,docs,examples,tests,scripts}
+
+# Install Office.js types and tools
+RUN npm init -y && \
+    npm install --save-dev \
+    @types/office-js \
+    @types/office-runtime \
+    office-js \
+    office-js-helpers \
+    office-ui-fabric-react \
+    @fluentui/react \
+    @fluentui/react-components
+
+# Install data visualization libraries
+RUN npm install --save \
+    chart.js \
+    d3 \
+    plotly.js \
+    recharts \
+    victory \
+    react-chartjs-2 \
+    @types/d3 \
+    @types/chart.js
+
+# Install performance monitoring libraries
+RUN npm install --save \
+    performance-now \
+    memory-usage \
+    systeminformation \
+    pidusage \
+    clinic \
+    0x \
+    autocannon \
+    wrk
+
+# Install testing and development tools
+RUN npm install --save-dev \
+    @types/jest \
+    @types/testing-library__jest-dom \
+    @testing-library/jest-dom \
+    @testing-library/react \
+    @testing-library/user-event \
+    jest-environment-jsdom \
+    cypress \
+    @cypress/react \
+    @cypress/webpack-dev-server
+
+# Create TypeScript configuration for Excel AppScript Performance Monitor
+RUN cat > /workspaces/tsconfig.json << 'EOF'
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@/components/*": ["components/*"],
+      "@/utils/*": ["utils/*"],
+      "@/types/*": ["types/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/services/*": ["services/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}
+EOF
+
+# Create package.json for Excel AppScript Performance Monitor
+RUN cat > /workspaces/package.json << 'EOF'
+{
+  "name": "excel-appscript-performance-monitor",
+  "version": "1.0.0",
+  "description": "Excel AppScript Performance Monitor - Visualize memory usage and optimize spreadsheet performance",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "start": "webpack serve --mode development",
+    "dev": "webpack serve --mode development --open",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "format": "prettier --write src/**/*.{ts,tsx,json}",
+    "validate": "office-addin-validator manifest.xml",
+    "sideload": "office-addin-dev-settings sideload manifest.xml",
+    "dev-server": "webpack serve --mode development --open",
+    "profile": "node --prof dist/index.js",
+    "profile:analyze": "node --prof-process isolate-*.log",
+    "memory:profile": "node --inspect dist/index.js",
+    "performance:test": "autocannon http://localhost:3000",
+    "excel:test": "npm run build && office-addin-dev-settings sideload manifest.xml"
+  },
+  "dependencies": {
+    "office-js": "^1.1.0",
+    "office-js-helpers": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0",
+    "d3": "^7.8.5",
+    "plotly.js": "^2.24.1",
+    "recharts": "^2.8.0",
+    "victory": "^36.6.12",
+    "performance-now": "^2.1.0",
+    "memory-usage": "^1.0.0",
+    "systeminformation": "^5.21.15",
+    "pidusage": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/office-js": "^1.0.0",
+    "@types/office-runtime": "^1.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/d3": "^7.4.0",
+    "@types/chart.js": "^2.9.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.15.0",
+    "ts-loader": "^9.0.0",
+    "html-webpack-plugin": "^5.0.0",
+    "css-loader": "^6.0.0",
+    "style-loader": "^3.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "cypress": "^13.0.0",
+    "@cypress/react": "^5.0.0",
+    "@cypress/webpack-dev-server": "^3.0.0",
+    "clinic": "^11.0.0",
+    "0x": "^5.0.0",
+    "autocannon": "^7.0.0"
+  },
+  "keywords": [
+    "excel",
+    "appscript",
+    "performance",
+    "monitoring",
+    "memory",
+    "visualization",
+    "typescript",
+    "office-js"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
+EOF
+
+# Create webpack configuration for Excel AppScript Performance Monitor
+RUN cat > /workspaces/webpack.config.js << 'EOF'
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.tsx',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    clean: true,
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      title: 'Excel AppScript Performance Monitor',
+    }),
+  ],
+  devServer: {
+    static: './dist',
+    port: 3000,
+    hot: true,
+    open: true,
+    historyApiFallback: true,
+  },
+  devtool: 'source-map',
+};
+EOF
+
+# Create ESLint configuration
+RUN cat > /workspaces/.eslintrc.js << 'EOF'
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    jest: true,
+  },
+  extends: [
+    'eslint:recommended',
+    '@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+  rules: {
+    'no-console': 'warn',
+    'no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+};
+EOF
+
+# Create Prettier configuration
+RUN cat > /workspaces/.prettierrc << 'EOF'
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
+}
+EOF
+
+# Create Jest configuration
+RUN cat > /workspaces/jest.config.js << 'EOF'
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  roots: ['<rootDir>/src'],
+  testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.test.{ts,tsx}',
+    '!src/**/*.spec.{ts,tsx}',
+  ],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  moduleNameMapping: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+};
+EOF
+
+# Create Cypress configuration
+RUN cat > /workspaces/cypress.config.js << 'EOF'
+const { defineConfig } = require('cypress');
+
+module.exports = defineConfig({
+  e2e: {
+    baseUrl: 'http://localhost:3000',
+    supportFile: 'cypress/support/e2e.js',
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    viewportWidth: 1280,
+    viewportHeight: 720,
+  },
+  component: {
+    devServer: {
+      framework: 'create-react-app',
+      bundler: 'webpack',
+    },
+  },
+});
+EOF
+
+# Create sample Excel AppScript Performance Monitor template
+RUN mkdir -p /workspaces/templates/excel-performance-monitor/src
+RUN cat > /workspaces/templates/excel-performance-monitor/src/index.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Excel AppScript Performance Monitor</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #0078d4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            border-left: 4px solid #0078d4;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .metric-value {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .status-good { color: #28a745; }
+        .status-warning { color: #ffc107; }
+        .status-danger { color: #dc3545; }
+        .chart-container {
+            height: 300px;
+            margin: 20px 0;
+        }
+        .btn {
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #106ebe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Excel AppScript Performance Monitor</h1>
+            <p>Real-time performance monitoring and optimization for your spreadsheets</p>
+        </div>
+        <div class="dashboard">
+            <div class="card">
+                <h3>Memory Usage</h3>
+                <div class="metric">
+                    <span>Total Memory:</span>
+                    <span class="metric-value" id="totalMemory">-</span>
+                </div>
+                <div class="metric">
+                    <span>Used Memory:</span>
+                    <span class="metric-value" id="usedMemory">-</span>
+                </div>
+                <div class="metric">
+                    <span>Excel Memory:</span>
+                    <span class="metric-value" id="excelMemory">-</span>
+                </div>
+                <div class="chart-container" id="memoryChart"></div>
+            </div>
+            <div class="card">
+                <h3>Performance Metrics</h3>
+                <div class="metric">
+                    <span>Calculation Speed:</span>
+                    <span class="metric-value status-good" id="calcSpeed">-</span>
+                </div>
+                <div class="metric">
+                    <span>Active Processes:</span>
+                    <span class="metric-value" id="activeProcesses">-</span>
+                </div>
+                <div class="metric">
+                    <span>CPU Usage:</span>
+                    <span class="metric-value" id="cpuUsage">-</span>
+                </div>
+                <div class="chart-container" id="performanceChart"></div>
+            </div>
+        </div>
+        <div style="padding: 20px; text-align: center;">
+            <button class="btn" id="startMonitoring">Start Monitoring</button>
+            <button class="btn" id="stopMonitoring">Stop Monitoring</button>
+            <button class="btn" id="exportReport">Export Report</button>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+</html>
+EOF
+
+RUN cat > /workspaces/templates/excel-performance-monitor/src/index.ts << 'EOF'
+// Excel AppScript Performance Monitor
+// Real-time performance monitoring and optimization
+
+import { PerformanceMonitor } from './services/PerformanceMonitor';
+import { MemoryTracker } from './services/MemoryTracker';
+import { CalculationProfiler } from './services/CalculationProfiler';
+import { UIManager } from './ui/UIManager';
+
+class ExcelPerformanceMonitorApp {
+    private performanceMonitor: PerformanceMonitor;
+    private memoryTracker: MemoryTracker;
+    private calculationProfiler: CalculationProfiler;
+    private uiManager: UIManager;
+    private isMonitoring: boolean = false;
+
+    constructor() {
+        this.performanceMonitor = new PerformanceMonitor();
+        this.memoryTracker = new MemoryTracker();
+        this.calculationProfiler = new CalculationProfiler();
+        this.uiManager = new UIManager();
+        
+        this.initializeEventListeners();
+    }
+
+    private initializeEventListeners(): void {
+        document.getElementById('startMonitoring')?.addEventListener('click', () => this.startMonitoring());
+        document.getElementById('stopMonitoring')?.addEventListener('click', () => this.stopMonitoring());
+        document.getElementById('exportReport')?.addEventListener('click', () => this.exportReport());
+    }
+
+    public async startMonitoring(): Promise<void> {
+        if (this.isMonitoring) return;
+
+        try {
+            console.log('Starting Excel Performance Monitoring...');
+            
+            // Initialize Office.js
+            await Office.onReady();
+            
+            // Start monitoring services
+            await this.performanceMonitor.start();
+            await this.memoryTracker.start();
+            await this.calculationProfiler.start();
+            
+            // Update UI
+            this.uiManager.updateStatus('Monitoring Active', 'status-good');
+            this.isMonitoring = true;
+            
+            // Start real-time updates
+            this.startRealTimeUpdates();
+            
+        } catch (error) {
+            console.error('Error starting monitoring:', error);
+            this.uiManager.updateStatus('Error Starting Monitoring', 'status-danger');
+        }
+    }
+
+    public async stopMonitoring(): Promise<void> {
+        if (!this.isMonitoring) return;
+
+        try {
+            console.log('Stopping Excel Performance Monitoring...');
+            
+            // Stop monitoring services
+            await this.performanceMonitor.stop();
+            await this.memoryTracker.stop();
+            await this.calculationProfiler.stop();
+            
+            // Update UI
+            this.uiManager.updateStatus('Monitoring Stopped', 'status-warning');
+            this.isMonitoring = false;
+            
+        } catch (error) {
+            console.error('Error stopping monitoring:', error);
+        }
+    }
+
+    private startRealTimeUpdates(): void {
+        setInterval(async () => {
+            if (!this.isMonitoring) return;
+
+            try {
+                // Get current performance data
+                const memoryData = await this.memoryTracker.getCurrentUsage();
+                const performanceData = await this.performanceMonitor.getMetrics();
+                const calculationData = await this.calculationProfiler.getMetrics();
+
+                // Update UI with real-time data
+                this.uiManager.updateMemoryData(memoryData);
+                this.uiManager.updatePerformanceData(performanceData);
+                this.uiManager.updateCalculationData(calculationData);
+
+            } catch (error) {
+                console.error('Error updating real-time data:', error);
+            }
+        }, 1000); // Update every second
+    }
+
+    public async exportReport(): Promise<void> {
+        try {
+            console.log('Exporting performance report...');
+            
+            const report = {
+                timestamp: new Date().toISOString(),
+                memory: await this.memoryTracker.getCurrentUsage(),
+                performance: await this.performanceMonitor.getMetrics(),
+                calculations: await this.calculationProfiler.getMetrics(),
+                recommendations: await this.generateRecommendations()
+            };
+
+            // Export to Excel
+            await this.exportToExcel(report);
+            
+        } catch (error) {
+            console.error('Error exporting report:', error);
+        }
+    }
+
+    private async exportToExcel(report: any): Promise<void> {
+        try {
+            await Excel.run(async (context) => {
+                const sheet = context.workbook.worksheets.getActiveWorksheet();
+                
+                // Add report data to Excel
+                const range = sheet.getRange("A1");
+                range.values = [["Excel Performance Report"]];
+                
+                // Add timestamp
+                const timestampRange = sheet.getRange("A2");
+                timestampRange.values = [[`Generated: ${report.timestamp}`]];
+                
+                // Add memory data
+                const memoryRange = sheet.getRange("A4:D6");
+                memoryRange.values = [
+                    ["Metric", "Value", "Status", "Recommendation"],
+                    ["Total Memory", `${report.memory.total} MB`, "Good", "Continue monitoring"],
+                    ["Used Memory", `${report.memory.used} MB`, "Good", "Optimize if > 80%"]
+                ];
+                
+                await context.sync();
+            });
+        } catch (error) {
+            console.error('Error exporting to Excel:', error);
+        }
+    }
+
+    private async generateRecommendations(): Promise<string[]> {
+        const recommendations: string[] = [];
+        
+        try {
+            const memoryData = await this.memoryTracker.getCurrentUsage();
+            const performanceData = await this.performanceMonitor.getMetrics();
+            
+            // Memory recommendations
+            if (memoryData.usedPercentage > 80) {
+                recommendations.push("High memory usage detected. Consider optimizing formulas or reducing data size.");
+            }
+            
+            // Performance recommendations
+            if (performanceData.calculationTime > 5000) {
+                recommendations.push("Slow calculations detected. Consider using more efficient formulas or data structures.");
+            }
+            
+            // General recommendations
+            recommendations.push("Regular monitoring helps identify performance bottlenecks early.");
+            recommendations.push("Consider using Excel's built-in performance tools for detailed analysis.");
+            
+        } catch (error) {
+            console.error('Error generating recommendations:', error);
+        }
+        
+        return recommendations;
+    }
+}
+
+// Initialize the app when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new ExcelPerformanceMonitorApp();
+});
+EOF
+
+# Create README for Excel AppScript Performance Monitor
+RUN cat > /workspaces/README.md << 'EOF'
+# Excel AppScript Performance Monitor
+
+A comprehensive tool for monitoring and optimizing Excel AppScript performance, with real-time memory usage visualization and calculation profiling.
+
+## Features
+
+- **Real-time Memory Monitoring**: Track Excel workbook memory usage
+- **Performance Profiling**: Monitor calculation times and bottlenecks
+- **Process Tracking**: Identify resource-intensive operations
+- **Visual Dashboards**: Interactive charts and graphs
+- **Optimization Recommendations**: AI-powered performance suggestions
+- **Export Reports**: Generate detailed performance reports
+
+## Quick Start
+
+1. Open this devcontainer in VS Code
+2. Navigate to the `templates/excel-performance-monitor` directory
+3. Run `npm install` to install dependencies
+4. Run `npm run dev` to start development server
+5. Open Excel and load the add-in
+
+## Development Commands
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+
+## Architecture
+
+- **Frontend**: React + TypeScript + Chart.js
+- **Backend**: Node.js + Excel JavaScript API
+- **Monitoring**: Custom performance tracking
+- **Visualization**: Interactive charts and dashboards
+
+## Performance Monitoring
+
+The tool provides comprehensive monitoring of:
+
+- Memory usage (total, used, Excel-specific)
+- Calculation performance
+- Process activity
+- Resource utilization
+- Bottleneck identification
+
+## Optimization Features
+
+- Real-time performance alerts
+- Automated optimization suggestions
+- Historical performance tracking
+- Comparative analysis
+- Best practice recommendations
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
+EOF
+
+# Set proper permissions
+RUN chown -R ${USERNAME}:${USERNAME} /workspaces
+
+# Expose default port
+EXPOSE 3000
+
+# Default command
+CMD ["bash"]

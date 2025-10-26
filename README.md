@@ -12,6 +12,8 @@ A comprehensive, reusable devcontainer specifically designed for TypeScript deve
 - **Code Quality Tools**: ESLint, Prettier, and automated formatting
 - **Ready-to-Use Templates**: Pre-built templates for common Excel applications
 - **VS Code Integration**: Optimized extensions and settings for Office development
+- **Gitpod Support**: Full cloud development environment with one-click setup
+- **Windows 11 + WSL2**: Optimized for Windows 11 with WSL2 development
 
 ## 📁 Project Structure
 
@@ -38,17 +40,46 @@ templates/                  # Project templates
 docs/                      # Documentation
 ├── getting-started.md     # Getting started guide
 ├── api-reference.md       # API reference
-└── troubleshooting.md     # Troubleshooting guide
+├── troubleshooting.md     # Troubleshooting guide
+└── gitpod-setup-guide.md  # Gitpod setup guide for Windows 11 + WSL2
 
 scripts/                   # Utility scripts
 ├── setup-project.sh      # Project setup script
 ├── build-all.sh          # Build all projects script
-└── test-all.sh           # Test all projects script
+├── test-all.sh           # Test all projects script
+├── setup-gitpod-windows.sh # Gitpod setup for Windows 11 + WSL2
+├── gitpod-setup.sh       # Gitpod environment setup
+└── gitpod-test.sh        # Gitpod configuration test
 ```
 
 ## 🛠️ Quick Start
 
-### Prerequisites
+### Option 1: Gitpod (Recommended for Windows 11 + WSL2)
+
+**One-click cloud development environment**
+
+1. **Setup Gitpod** (Windows 11 + WSL2):
+   ```bash
+   git clone <repository-url>
+   cd Devcontainers
+   ./scripts/setup-gitpod-windows.sh
+   ```
+
+2. **Open in Gitpod**:
+   - Go to [gitpod.io](https://gitpod.io)
+   - Open your repository
+   - Start coding immediately!
+
+3. **Start developing**:
+   ```bash
+   npm run dev-server
+   ```
+
+📚 **Full Gitpod Guide**: [docs/gitpod-setup-guide.md](docs/gitpod-setup-guide.md)
+
+### Option 2: Local Development
+
+#### Prerequisites
 
 - [Docker](https://www.docker.com/get-started)
 - [Cursor IDE](https://cursor.sh/) or [VS Code](https://code.visualstudio.com/)
