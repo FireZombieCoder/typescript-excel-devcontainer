@@ -62,7 +62,7 @@ if git config --global user.name | grep -q "rdavidson1911"; then
     print_warning "Detected rdavidson1911 as the authenticated user"
     print_status "Will use: $REPO_URL"
 elif git config --global user.name | grep -q "FireZombieCoder"; then
-    REPO_URL="https://github.com/FireZombieCoder/typescript-excel-devcontainer.git"
+    REPO_URL="https://github.com/rdavidson1911/typescript-excel-devcontainer.git"
     GITHUB_USER="FireZombieCoder"
     print_status "Using FireZombieCoder repository"
 else
@@ -80,17 +80,17 @@ print_success "Remote repository added: $REPO_URL"
 print_step "Updating repository URLs in all files..."
 
 # Update package.json files
-find . -name "package.json" -exec sed -i "s|github.com/FireZombieCoder/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
+find . -name "package.json" -exec sed -i "s|github.com/rdavidson1911/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
 
 # Update shell scripts
-find . -name "*.sh" -exec sed -i "s|github.com/FireZombieCoder/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
+find . -name "*.sh" -exec sed -i "s|github.com/rdavidson1911/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
 
 # Update markdown files
-find . -name "*.md" -exec sed -i "s|github.com/FireZombieCoder/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
+find . -name "*.md" -exec sed -i "s|github.com/rdavidson1911/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
 
 # Update YAML files
-find . -name "*.yml" -exec sed -i "s|github.com/FireZombieCoder/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
-find . -name "*.yaml" -exec sed -i "s|github.com/FireZombieCoder/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
+find . -name "*.yml" -exec sed -i "s|github.com/rdavidson1911/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
+find . -name "*.yaml" -exec sed -i "s|github.com/rdavidson1911/typescript-excel-devcontainer|github.com/$GITHUB_USER/typescript-excel-devcontainer|g" {} \;
 
 print_success "Repository URLs updated in all files"
 

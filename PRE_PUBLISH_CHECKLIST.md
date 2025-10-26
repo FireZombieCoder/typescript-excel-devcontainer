@@ -47,4 +47,4 @@ git push -u origin main
 ```
 
 Then open in Gitpod:
-https://gitpod.io/#https://github.com/FireZombieCoder/typescript-excel-devcontainer
+https://gitpod.io/#https://github.com/rdavidson1911/typescript-excel-devcontainer

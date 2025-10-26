@@ -341,7 +341,7 @@ git push -u origin main
 ```
 
 Then open in Gitpod:
-https://gitpod.io/#https://github.com/FireZombieCoder/typescript-excel-devcontainer
+https://gitpod.io/#https://github.com/rdavidson1911/typescript-excel-devcontainer
 EOF
 
 print_success "Pre-publish checklist created: PRE_PUBLISH_CHECKLIST.md"
@@ -357,8 +357,8 @@ echo "2. Check all items in the checklist"
 echo "3. Test the setup script: ./scripts/setup-gitpod-windows.sh --test"
 echo "4. Commit any remaining changes"
 echo "5. Push to GitHub: git push -u origin main"
-echo "6. Open in Gitpod: https://gitpod.io/#https://github.com/FireZombieCoder/typescript-excel-devcontainer"
+echo "6. Open in Gitpod: https://gitpod.io/#https://github.com/rdavidson1911/typescript-excel-devcontainer"
 echo ""
-echo "🔗 Repository URL: https://github.com/FireZombieCoder/typescript-excel-devcontainer"
+echo "🔗 Repository URL: https://github.com/rdavidson1911/typescript-excel-devcontainer"
 echo ""
 echo "Happy coding! 🚀"

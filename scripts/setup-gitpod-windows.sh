@@ -448,12 +448,12 @@ create_gitpod_package_json() {
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FireZombieCoder/typescript-excel-devcontainer.git"
+    "url": "git+https://github.com/rdavidson1911/typescript-excel-devcontainer.git"
   },
   "bugs": {
-    "url": "https://github.com/FireZombieCoder/typescript-excel-devcontainer/issues"
+    "url": "https://github.com/rdavidson1911/typescript-excel-devcontainer/issues"
   },
-  "homepage": "https://github.com/FireZombieCoder/typescript-excel-devcontainer#readme",
+  "homepage": "https://github.com/rdavidson1911/typescript-excel-devcontainer#readme",
   "dependencies": {
     "@microsoft/office-js": "^1.1.110",
     "@microsoft/office-js-helpers": "^1.0.2",
