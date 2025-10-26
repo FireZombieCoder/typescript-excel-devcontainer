@@ -14,6 +14,7 @@ A comprehensive, reusable devcontainer specifically designed for TypeScript deve
 - **VS Code Integration**: Optimized extensions and settings for Office development
 - **Gitpod Support**: Full cloud development environment with one-click setup
 - **Windows 11 + WSL2**: Optimized for Windows 11 with WSL2 development
+- **Interactive Helper Script**: Command-line tool for project management and automation
 
 ## 📁 Project Structure
 
@@ -51,6 +52,23 @@ scripts/                   # Utility scripts
 ├── gitpod-setup.sh       # Gitpod environment setup
 └── gitpod-test.sh        # Gitpod configuration test
 ```
+
+## ⚡ Super Quick Start
+
+**New to this environment? Use our helper script:**
+
+```bash
+# Interactive menu with all options
+./scripts/excel-dev-helper.sh
+
+# Or create a project directly
+./scripts/excel-dev-helper.sh create my-excel-app
+./scripts/excel-dev-helper.sh start my-excel-app
+```
+
+📚 **See [EXCEL_DEV_QUICKSTART.md](EXCEL_DEV_QUICKSTART.md) for complete guide**
+
+---
 
 ## 🛠️ Quick Start
 
@@ -200,6 +218,33 @@ npm run dev-server
 
 ## 🔧 Development Commands
 
+### Using the Helper Script (Recommended)
+
+```bash
+# Create new project
+./scripts/excel-dev-helper.sh create my-project
+
+# List all projects
+./scripts/excel-dev-helper.sh list
+
+# Start development server
+./scripts/excel-dev-helper.sh start my-project
+
+# Build project
+./scripts/excel-dev-helper.sh build my-project
+
+# Run tests
+./scripts/excel-dev-helper.sh test my-project
+
+# Show environment info
+./scripts/excel-dev-helper.sh info
+
+# Interactive menu
+./scripts/excel-dev-helper.sh
+```
+
+### Manual Commands (Inside Project Directory)
+
 ### Build Commands
 ```bash
 npm run build          # Build for production
@@ -232,6 +277,10 @@ npm run dev-server     # Start development server
 ```
 
 ## 📚 Documentation
+
+### Quick References
+- **[Excel Dev Quick Start](EXCEL_DEV_QUICKSTART.md)** - ⚡ Start here for fastest setup
+- **[Excel Dev Helper Guide](docs/excel-dev-helper-guide.md)** - Complete script documentation
 
 ### Internal Guides
 - [Getting Started Guide](docs/getting-started.md) - Step-by-step setup and development
