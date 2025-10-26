@@ -1,0 +1,128 @@
+{
+	"name": "TypeScript Excel DevContainer",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "20"
+		},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-typescript-next",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-eslint",
+				"formulahendry.auto-rename-tag",
+				"christian-kohler.path-intellisense",
+				"ms-vscode.vscode-json",
+				"ms-vscode.vscode-office-addin-dev-tools",
+				"ms-vscode.vscode-office-addin-debugger",
+				"ms-vscode.vscode-office-addin-lint",
+				"ms-vscode.vscode-office-addin-manifest",
+				"ms-vscode.vscode-office-addin-validator",
+				"ms-vscode.vscode-html-css-support",
+				"ms-vscode.vscode-css-peek",
+				"ms-vscode.vscode-htmlhint",
+				"ms-vscode.vscode-css-lint",
+				"ms-vscode.vscode-jest",
+				"ms-vscode.vscode-playwright",
+				"ms-vscode.vscode-debugger-for-chrome",
+				"ms-vscode.vscode-debugger-for-edge",
+				"eamodio.gitlens",
+				"ms-vscode.vscode-github-pullrequest",
+				"ms-vscode.vscode-github-actions",
+				"ms-vscode.vscode-thunder-client",
+				"ms-vscode.vscode-restclient",
+				"ms-vscode.vscode-markdown-preview-enhanced",
+				"ms-vscode.vscode-drawio",
+				"ms-vscode.vscode-yaml",
+				"ms-vscode.vscode-xml",
+				"ms-vscode.vscode-markdown",
+				"ms-vscode.vscode-docker"
+			],
+			"settings": {
+				"typescript.preferences.importModuleSpecifier": "relative",
+				"typescript.suggest.autoImports": true,
+				"typescript.updateImportsOnFileMove.enabled": "always",
+				"typescript.preferences.includePackageJsonAutoImports": "auto",
+				"javascript.suggest.autoImports": true,
+				"javascript.updateImportsOnFileMove.enabled": "always",
+				"javascript.preferences.includePackageJsonAutoImports": "auto",
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": "explicit",
+					"source.organizeImports": "explicit"
+				},
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"editor.detectIndentation": false,
+				"files.associations": {
+					"*.ts": "typescript",
+					"*.tsx": "typescriptreact",
+					"*.js": "javascript",
+					"*.jsx": "javascriptreact",
+					"*.json": "jsonc"
+				},
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"office-addin-dev-tools.enableTelemetry": false,
+				"office-addin-dev-tools.showWelcomePage": true,
+				"eslint.validate": [
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact"
+				],
+				"eslint.workingDirectories": [
+					"/workspace"
+				],
+				"prettier.requireConfig": true,
+				"prettier.useEditorConfig": false,
+				"jest.autoRun": "off",
+				"jest.showCoverageOnLoad": true,
+				"playwright.showTrace": true,
+				"playwright.showReport": true,
+				"git.enableSmartCommit": true,
+				"git.confirmSync": false,
+				"git.autofetch": true,
+				"explorer.fileNesting.enabled": true,
+				"explorer.fileNesting.patterns": {
+					"*.ts": "${capture}.js, ${capture}.d.ts, ${capture}.js.map",
+					"*.tsx": "${capture}.js, ${capture}.d.ts, ${capture}.js.map",
+					"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+					"tsconfig.json": "tsconfig.*.json",
+					"webpack.config.js": "webpack.*.js",
+					"jest.config.js": "jest.*.js"
+				},
+				"workbench.colorTheme": "Default Dark+",
+				"workbench.iconTheme": "vs-seti",
+				"workbench.startupEditor": "welcomePage",
+				"workbench.editor.enablePreview": false,
+				"workbench.editor.enablePreviewFromQuickOpen": false
+			}
+		}
+	},
+	"forwardPorts": [3000, 8080, 9229],
+	"portsAttributes": {
+		"3000": {
+			"label": "Dev Server",
+			"onAutoForward": "openPreview"
+		},
+		"8080": {
+			"label": "Office Add-in",
+			"onAutoForward": "openPreview"
+		},
+		"9229": {
+			"label": "Debug Port",
+			"onAutoForward": "silent"
+		}
+	},
+	"postCreateCommand": "bash scripts/gitpod-setup.sh",
+	"remoteUser": "vscode",
+	"workspaceFolder": "/workspace",
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+	]
+}

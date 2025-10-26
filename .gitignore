@@ -229,7 +229,7 @@ temp/
 docker-compose.override.yml
 
 # DevContainer specific
-.devcontainer/
+# .devcontainer/ - We want to track DevContainer configuration
 .vscode/
 *.code-workspace
 
