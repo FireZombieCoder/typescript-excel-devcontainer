@@ -57,7 +57,7 @@ fi
 # Test Node.js
 print_step "Testing Node.js..."
 if command -v node >/dev/null 2>&1; then
-    local node_version=$(node --version)
+    node_version=$(node --version)
     print_success "Node.js $node_version is installed"
 else
     print_error "Node.js is not installed"
@@ -67,7 +67,7 @@ fi
 # Test npm
 print_step "Testing npm..."
 if command -v npm >/dev/null 2>&1; then
-    local npm_version=$(npm --version)
+    npm_version=$(npm --version)
     print_success "npm $npm_version is installed"
 else
     print_error "npm is not installed"
