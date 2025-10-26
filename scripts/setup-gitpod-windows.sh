@@ -408,7 +408,7 @@ create_gitpod_package_json() {
     # Create Gitpod-optimized package.json
     cat > package.json << 'EOF'
 {
-  "name": "typescript-excel-gitpod-devcontainer",
+  "name": "typescript-excel-devcontainer",
   "version": "1.0.0",
   "description": "A comprehensive Gitpod workspace for TypeScript Excel development with Office.js integration",
   "main": "index.js",
@@ -448,12 +448,12 @@ create_gitpod_package_json() {
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/typescript-excel-gitpod-devcontainer.git"
+    "url": "git+https://github.com/FireZombieCoder/typescript-excel-devcontainer.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/typescript-excel-gitpod-devcontainer/issues"
+    "url": "https://github.com/FireZombieCoder/typescript-excel-devcontainer/issues"
   },
-  "homepage": "https://github.com/your-username/typescript-excel-gitpod-devcontainer#readme",
+  "homepage": "https://github.com/FireZombieCoder/typescript-excel-devcontainer#readme",
   "dependencies": {
     "@microsoft/office-js": "^1.1.110",
     "@microsoft/office-js-helpers": "^1.0.2",

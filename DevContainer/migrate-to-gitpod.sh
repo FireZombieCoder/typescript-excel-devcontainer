@@ -161,7 +161,7 @@ git:
     - name: user.name
       value: \$(git config user.name || echo "GitPod User")
     - name: user.email
-      value: \$(git config user.email || echo "user@gitpod.io")
+      value: \$(git config user.email || echo "gitpod@example.com")
 
 # Workspace settings
 workspace:

@@ -63,7 +63,7 @@ git:
     - name: user.name
       value: "Your Name"
     - name: user.email
-      value: "your@email.com"
+      value: "gitpod@example.com"
 
 # Prebuild configuration
 github:

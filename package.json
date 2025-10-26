@@ -18,14 +18,14 @@
     "add-in",
     "development-environment"
   ],
-  "author": "Your Name",
+  "author": "FireZombieCoder",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/typescript-excel-devcontainer.git"
+    "url": "git+https://github.com/FireZombieCoder/typescript-excel-devcontainer.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/typescript-excel-devcontainer/issues"
+    "url": "https://github.com/FireZombieCoder/typescript-excel-devcontainer/issues"
   },
-  "homepage": "https://github.com/your-username/typescript-excel-devcontainer#readme"
+  "homepage": "https://github.com/FireZombieCoder/typescript-excel-devcontainer#readme"
 }
