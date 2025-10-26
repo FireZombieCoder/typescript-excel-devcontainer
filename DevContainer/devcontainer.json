@@ -1,0 +1,199 @@
+{
+  "name": "TypeScript Excel Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": { 
+      "USERNAME": "dev", 
+      "UID": "1000", 
+      "GID": "1000" 
+    }
+  },
+
+  // Automatic extensions installed in the container
+  "extensions": [
+    // TypeScript and JavaScript development
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-eslint",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-json",
+    
+    // Office.js and Excel development
+    "ms-vscode.vscode-office-addin-dev-tools",
+    "ms-vscode.vscode-office-addin-debugger",
+    "ms-vscode.vscode-office-addin-lint",
+    "ms-vscode.vscode-office-addin-manifest",
+    "ms-vscode.vscode-office-addin-validator",
+    
+    // Web development
+    "ms-vscode.vscode-html-css-support",
+    "ms-vscode.vscode-css-peek",
+    "ms-vscode.vscode-htmlhint",
+    "ms-vscode.vscode-css-lint",
+    
+    // Testing and debugging
+    "ms-vscode.vscode-jest",
+    "ms-vscode.vscode-playwright",
+    "ms-vscode.vscode-debugger-for-chrome",
+    "ms-vscode.vscode-debugger-for-edge",
+    
+    // Git and version control
+    "eamodio.gitlens",
+    "ms-vscode.vscode-github-pullrequest",
+    "ms-vscode.vscode-github-actions",
+    
+    // Productivity
+    "ms-vscode.vscode-thunder-client",
+    "ms-vscode.vscode-restclient",
+    "ms-vscode.vscode-markdown-preview-enhanced",
+    "ms-vscode.vscode-drawio",
+    
+    // Code quality and formatting
+    "ms-vscode.vscode-json",
+    "ms-vscode.vscode-yaml",
+    "ms-vscode.vscode-xml",
+    "ms-vscode.vscode-markdown",
+    
+    // Office and Excel specific
+    "ms-vscode.vscode-office-addin-dev-tools",
+    "ms-vscode.vscode-office-addin-debugger",
+    "ms-vscode.vscode-office-addin-lint",
+    "ms-vscode.vscode-office-addin-manifest",
+    "ms-vscode.vscode-office-addin-validator"
+  ],
+
+  // Mount points
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspaces,type=bind"
+  ],
+
+  // Port forwarding
+  "forwardPorts": [3000, 8080, 9229],
+
+  // Custom settings inside the container
+  "settings": {
+    // TypeScript settings
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    
+    // JavaScript settings
+    "javascript.suggest.autoImports": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.preferences.includePackageJsonAutoImports": "auto",
+    
+    // Editor settings
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    
+    // File associations
+    "files.associations": {
+      "*.ts": "typescript",
+      "*.tsx": "typescriptreact",
+      "*.js": "javascript",
+      "*.jsx": "javascriptreact",
+      "*.json": "jsonc"
+    },
+    
+    // Terminal settings
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "/bin/bash",
+        "args": ["-l"]
+      }
+    },
+    
+    // Office.js settings
+    "office-addin-dev-tools.enableTelemetry": false,
+    "office-addin-dev-tools.showWelcomePage": true,
+    
+    // ESLint settings
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    "eslint.workingDirectories": [
+      "/workspaces"
+    ],
+    
+    // Prettier settings
+    "prettier.requireConfig": true,
+    "prettier.useEditorConfig": false,
+    
+    // Jest settings
+    "jest.autoRun": "off",
+    "jest.showCoverageOnLoad": true,
+    
+    // Playwright settings
+    "playwright.showTrace": true,
+    "playwright.showReport": true,
+    
+    // Git settings
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    
+    // Explorer settings
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "${capture}.js, ${capture}.d.ts, ${capture}.js.map",
+      "*.tsx": "${capture}.js, ${capture}.d.ts, ${capture}.js.map",
+      "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+      "tsconfig.json": "tsconfig.*.json",
+      "webpack.config.js": "webpack.*.js",
+      "jest.config.js": "jest.*.js"
+    }
+  },
+
+  // Default container commands
+  "postCreateCommand": "echo 'TypeScript Excel Development Environment ready!' && npm --version && node --version && tsc --version",
+  "postStartCommand": "echo 'Starting development environment...' && cd /workspaces && npm install",
+
+  // VS Code specific settings
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "vs-seti",
+        "workbench.startupEditor": "welcomePage",
+        "workbench.editor.enablePreview": false,
+        "workbench.editor.enablePreviewFromQuickOpen": false
+      }
+    }
+  },
+
+  // Features
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  // Lifecycle scripts
+  "onCreateCommand": "echo 'Creating TypeScript Excel development environment...'",
+  "updateContentCommand": "echo 'Updating development environment...'",
+  "postAttachCommand": "echo 'Attached to TypeScript Excel development environment'",
+
+  // Remote user
+  "remoteUser": "dev",
+
+  // Workspace folder
+  "workspaceFolder": "/workspaces",
+
+  // Additional configuration
+  "shutdownAction": "none",
+  "updateRemoteUserUID": true
+}
